@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UniDLink
 {
-    public class UniDCaptureLinker<T, TCapt> : IUniDCapturelizable, IUniDSignalizable, IUniDSignalModdable<T>, IUniDLinkable<T>
+    public class UniDCaptureLinker<T, TCapt> : IUniDCapturelizable, IUniDSignalizable, IUniDSignalModdable<T>, IUniDLinkable<T>, IUniDDualLinkable<T> 
     {
         private Func<TCapt, T> capturing;
         private Action<TCapt, T> insert;
@@ -35,9 +35,10 @@ namespace UniDLink
             LinkedValue = capturing(captureTarget);
         }
 
-        public void AddOnSignaled(Action<T> act)
+        public Action<T> AddOnSignaled(Action<T> act)
         {
             onSignaledActions.Add(act);
+            return act;
         }
         
         public void RemoveOnSignaled(Action<T> act)

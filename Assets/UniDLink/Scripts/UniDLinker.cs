@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UniDLink
 {
-    public class UniDLinker<T> : IUniDSignalizable, IUniDSignalModdable<T>, IUniDLinkable<T>
+    public class UniDLinker<T> : IUniDSignalizable, IUniDSignalModdable<T>, IUniDLinkable<T>, IUniDDualLinkable<T> 
     {
         private T linkedValue;
         private List<Action<T>> onSignaledActions = new List<Action<T>>();
@@ -30,9 +30,10 @@ namespace UniDLink
             }
         }
 
-        public void AddOnSignaled(Action<T> act)
+        public Action<T> AddOnSignaled(Action<T> act)
         {
             onSignaledActions.Add(act);
+            return act;
         }
 
         public void RemoveOnSignaled(Action<T> act)
