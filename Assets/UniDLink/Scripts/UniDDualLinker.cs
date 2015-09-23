@@ -12,8 +12,8 @@ namespace UniDLink
 
         private UniDDualLinker(IUniDDualLinkable<T> a,IUniDDualLinkable<T> b)
         {
-            aAct = a.AddOnSignaled((t) => { if (!dualLinking) { b.LinkedValue = t; dualLinking = true; } else { dualLinking = false; } });
-            bAct = b.AddOnSignaled((t) => { if (!dualLinking) { a.LinkedValue = t; dualLinking = true; } else { dualLinking = false; } });
+            aAct = a.AddOnSignaled((t) => { if (!dualLinking) { dualLinking = true; b.LinkedValue = t; } else { dualLinking = false; } });
+            bAct = b.AddOnSignaled((t) => { if (!dualLinking) { dualLinking = true; a.LinkedValue = t; } else { dualLinking = false; } });
             this.a = a;
             this.b = b;
         }
@@ -28,7 +28,7 @@ namespace UniDLink
             b = null;
         }
 
-        public static UniDDualLinker<T> DualLink<T>(IUniDDualLinkable<T> a,IUniDDualLinkable<T> b)
+        public static UniDDualLinker<T> DualLink(IUniDDualLinkable<T> a, IUniDDualLinkable<T> b)
         {
             return new UniDDualLinker<T>(a, b);
         }
