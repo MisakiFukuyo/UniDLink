@@ -4,6 +4,8 @@ using UniDLink;
 
 public class PositionCursorDualLink : MonoBehaviour {
 
+    public float moveSpeed = 3;
+
     public Transform xCursor;
     public Transform yCursor;
     public Transform zCursor;
@@ -45,69 +47,57 @@ public class PositionCursorDualLink : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Q))
         {
-            transform.position += Vector3.right * Time.deltaTime;
-            xLinkSelf.Signaling();
+            xLinkSelf.LinkedValue += moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position -= Vector3.right * Time.deltaTime;
-            xLinkSelf.Signaling();
+            xLinkSelf.LinkedValue -= moveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += Vector3.up * Time.deltaTime;
-            yLinkSelf.Signaling();
+            yLinkSelf.LinkedValue += moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position -= Vector3.up * Time.deltaTime;
-            yLinkSelf.Signaling();
+            yLinkSelf.LinkedValue -= moveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.E))
         {
-            transform.position += Vector3.forward * Time.deltaTime;
-            zLinkSelf.Signaling();
+            zLinkSelf.LinkedValue += moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position -= Vector3.forward * Time.deltaTime;
-            zLinkSelf.Signaling();
+            zLinkSelf.LinkedValue -= moveSpeed * Time.deltaTime;
         }
 
 
         if (Input.GetKey(KeyCode.T))
         {
-            xCursor.position += Vector3.right * Time.deltaTime;
-            xLink.Signaling();
+            xLink.LinkedValue += moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.G))
         {
-            xCursor.position -= Vector3.right * Time.deltaTime;
-            xLink.Signaling();
+            xLink.LinkedValue -= moveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.Y))
         {
-            yCursor.position += Vector3.up * Time.deltaTime;
-            yLink.Signaling();
+            yLink.LinkedValue += moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.H))
         {
-            yCursor.position -= Vector3.up * Time.deltaTime;
-            yLink.Signaling();
+            yLink.LinkedValue -= moveSpeed* Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.U))
         {
-            zCursor.position += Vector3.forward * Time.deltaTime;
-            zLink.Signaling();
+            zLink.LinkedValue += moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.J))
         {
-            zCursor.position -= Vector3.forward * Time.deltaTime;
-            zLink.Signaling();
+            zLink.LinkedValue -= moveSpeed * Time.deltaTime;
         }
 	}
 }
